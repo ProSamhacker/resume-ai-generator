@@ -32,9 +32,14 @@ export default function ResumeForm({
 
       const data = await response.json();
       onGenerated(data.output || data.error || 'No response received');
-    } catch (error: any) {
-      onGenerated(error.message || 'An error occurred');
-    } finally {
+   } catch (error) {
+  if (error instanceof Error) {
+    onGenerated(error.message);
+  } else {
+    onGenerated('An unknown error occurred');
+  }
+}
+ finally {
       setIsGenerating(false);
     }
   };
