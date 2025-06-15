@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
 
-export const runtime = 'edge';
-
 const handler = async (req: Request) => {
   if (req.method !== 'POST') {
     return new NextResponse(JSON.stringify({ error: 'Method not allowed' }), {
